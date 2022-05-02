@@ -1,5 +1,8 @@
-function preload(){
+noseX = 0;
+noseY = 0;
 
+function preload(){
+Lipstik = loadImage("https://i.postimg.cc/13syk6WN/Lipstik-image.png");
 }
 
 function setup(){
@@ -14,6 +17,7 @@ poseNet.on("pose" , gotPoses)
 
 function draw(){
     image(video , 0 , 0 , 300 , 300);
+    image(Lipstik , noseX , noseY , 25 , 25);
 }
 
 function take_a_snap(){
@@ -25,9 +29,11 @@ function modelLoaded(){
 }
 
 function gotPoses(results){
-    if(results.lenght > 0){
+    if(results.length > 0){
         console.log(results);
-        console.log("Nose x: " + results[0].pose.nose.x);
-        console.log("Nose y: " + results[0].pose.nose.y);
+        noseX = results[0].pose.nose.x - 13;
+        noseY = results[0].pose.nose.y + 10;
+        console.log("Nose x: " + noseX);
+        console.log("Nose y: " + noseY);
     }
 }
