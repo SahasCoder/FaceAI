@@ -2,7 +2,9 @@ noseX = 0;
 noseY = 0;
 
 function preload(){
-Lipstik = loadImage("https://i.postimg.cc/13syk6WN/Lipstik-image.png");
+    lipstick = loadImage("https://i.postimg.cc/13syk6WN/Lipstik-image.png");
+    mustache = loadImage("https://i.postimg.cc/jjnj4fZw/Mustache-Image.png");
+    
 }
 
 function setup(){
@@ -13,11 +15,18 @@ video.size(300 , 300);
 video.hide();
 poseNet = ml5.poseNet(video, modelLoaded);
 poseNet.on("pose" , gotPoses)
+face_filter_mode = "lipstick";
 }
 
 function draw(){
     image(video , 0 , 0 , 300 , 300);
-    image(Lipstik , noseX , noseY , 25 , 25);
+
+    if(face_filter_mode == "lipstick"){
+    image(lipstick , noseX , noseY , 25 , 25);
+    }
+    else if(face_filter_mode == "mustache"){
+        image(mustache , noseX , noseY - 5 , 25 , 25);
+    }
 }
 
 function take_a_snap(){
@@ -36,4 +45,12 @@ function gotPoses(results){
         console.log("Nose x: " + noseX);
         console.log("Nose y: " + noseY);
     }
+}
+
+function set_lipstick_faceFilter(){
+    face_filter_mode = "lipstick";
+}
+
+function set_mustache_faceFilter(){
+    face_filter_mode = "mustache";
 }
