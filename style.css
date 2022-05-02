@@ -29,3 +29,11 @@ canvas {
     }
 
 }
+
+.modifyDiv{
+    background-color: rgba(172, 255, 47, 0.546);
+}
+
+.lbl1{
+    font-size: 25px;
+}
